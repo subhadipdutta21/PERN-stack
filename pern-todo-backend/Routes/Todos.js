@@ -1,20 +1,21 @@
 const express = require('express')
 const router = express.Router()
 const todoController = require('../Controllers/todo-controller')
+const verifyTokenMiddleware = require('../Controllers/Verify-token-middleware')
 
 // get all todos
-router.get('', todoController.getAll)
+router.get('', verifyTokenMiddleware, todoController.getAll)
 
 // add todos
-router.post('', todoController.addOne)
+router.post('', verifyTokenMiddleware, todoController.addOne)
 
 //get a single todo by id
-router.get('/:id', todoController.getOne)
+router.get('/:id', verifyTokenMiddleware, todoController.getOne)
 
 // delete a todo by id
-router.get('/:id', todoController.deleteOne)
+router.delete('/:id', verifyTokenMiddleware, todoController.deleteOne)
 
 // update a todo
-router.put('/:id', todoController.updateOne)
+router.put('/:id', verifyTokenMiddleware, todoController.updateOne)
 
 module.exports = router

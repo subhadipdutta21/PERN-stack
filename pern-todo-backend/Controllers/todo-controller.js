@@ -25,10 +25,7 @@ module.exports = {
     getOne: async (req, res) => {
         try {
             let { id } = req.params
-            const todo = await pool.query(
-                'SELECT * FROM todo WHERE todo_id=($1)'
-                , [id]
-            )
+            const todo = await pool.query('SELECT * FROM todo WHERE todo_id=($1)', [id])
             res.json(todo.rows)
 
         } catch (error) {
@@ -39,10 +36,7 @@ module.exports = {
     deleteOne: async (req, res) => {
         try {
             let { id } = req.params
-            await pool.query(
-                'DELETE FROM todo WHERE todo_id=($1)'
-                , [id]
-            )
+            await pool.query('DELETE FROM todo WHERE todo_id=($1)', [id])
             res.json('todo deleted')
 
         } catch (error) {
@@ -54,11 +48,7 @@ module.exports = {
         try {
             let { id } = req.params
             let { desc } = req.body
-
-            await pool.query(
-                'UPDATE todo SET description =($1) WHERE todo_id=($2)'
-                , [desc, id]
-            )
+            await pool.query('UPDATE todo SET description =($1) WHERE todo_id=($2)', [desc, id])
             res.json('todo was updated')
 
         } catch (error) {
