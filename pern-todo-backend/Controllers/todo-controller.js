@@ -28,9 +28,7 @@ module.exports = {
             const todo = await pool.query('SELECT * FROM todo WHERE todo_id=($1)', [id])
             res.json(todo.rows)
 
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { console.log(error) }
     },
 
     deleteOne: async (req, res) => {
@@ -39,9 +37,7 @@ module.exports = {
             await pool.query('DELETE FROM todo WHERE todo_id=($1)', [id])
             res.json('todo deleted')
 
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { console.log(error) }
     },
 
     updateOne: async (req, res) => {
@@ -51,8 +47,6 @@ module.exports = {
             await pool.query('UPDATE todo SET description =($1) WHERE todo_id=($2)', [desc, id])
             res.json('todo was updated')
 
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) { console.log(error) }
     }
 }
